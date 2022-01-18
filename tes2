@@ -1,0 +1,23 @@
+#To generate a best fit model
+X_range=np.zeros((50,3))
+y_range=np.zeros((50,))
+for i in range(3):
+    Xi=X[:,i]
+    vals=plt.hist(Xi,49)
+    plt.xlabel("Feature")
+    plt.ylabel("Frequency")
+    X_range[:,i]=np.transpose(vals[1])
+y_range=model.predict(X_range)    
+
+
+# Plot the results
+plt.figure()
+plt.scatter(X[:,0], y, s=20, edgecolor="black", c="darkorange", label="train data")
+plt.scatter(x_test[:,0], model.predict(x_test), s=30, color="yellowgreen", label="test data", linewidth=2)
+plt.plot(X_range[:,0], y_range, color="cornflowerblue",
+         label="Regression_model", linewidth=2)
+plt.xlabel("R&D Cost")
+plt.ylabel("Profit")
+plt.title("Decision Tree Regression")
+plt.legend()
+plt.show()
